@@ -1,0 +1,29 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5rem 3rem;
+	background: var(--light-elements);
+	box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.header__logo {
+	font-size: 1.7rem;
+	font-weight: 800;
+}
+.header__theme-button {
+	background: transparent;
+	font-size: 1.1rem;
+	border: none;
+	padding: 0.2rem;
+	cursor: pointer;
+	display: flex;
+	gap: 0.3rem;
+	align-items: center;
+}
+.header__theme-button__icon {
+	transform: rotate(-25deg);
+}
+.header__theme-button__text {
+	font-weight: 300;
+}
