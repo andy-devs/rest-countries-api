@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import SearchFilter from '../components/countries/SearchFilter';
 
 const AllCountries = () => {
 	const location = useLocation();
@@ -6,9 +7,9 @@ const AllCountries = () => {
 	const searchParams = new URLSearchParams(location.search);
 
 	return (
-		<div>
-			<h1>All Countries</h1>
-		</div>
+		<main className='main'>
+			<SearchFilter />
+		</main>
 	);
 };
 
