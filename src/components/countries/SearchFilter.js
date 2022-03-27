@@ -1,24 +1,24 @@
 import styles from './SearchFilter.module.css';
+import { TextInput, Select } from '@mantine/core';
 
 const SearchFilter = () => {
 	return (
 		<div className={styles['search-filter']}>
-			<input
-				className={styles.input}
+			<TextInput
 				type='text'
 				name='search'
 				placeholder='Search for a country...'
 			/>
-			<select className={styles.select}>
-				<option value='' disabled selected hidden>
-					Filter by region
-				</option>
-				<option value='africa'>Africa</option>
-				<option value='america'>America</option>
-				<option value='asia'>Asia</option>
-				<option value='europe'>Europe</option>
-				<option value='oceania'>Oceania</option>
-			</select>
+			<Select
+				placeholder='Filter by region'
+				data={[
+					{ value: 'africa', label: 'Africa' },
+					{ value: 'america', label: 'America' },
+					{ value: 'asia', label: 'Asia' },
+					{ value: 'europe', label: 'Europe' },
+					{ value: 'oceania', label: 'Oceania' },
+				]}
+			/>
 		</div>
 	);
 };
