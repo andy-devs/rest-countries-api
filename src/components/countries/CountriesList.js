@@ -8,6 +8,10 @@ import Country from './Country';
 
 const CountriesList = () => {
 	const [countries, setCountries] = useState([]);
+	const [filteredCountries, setFilteredCountries] = useState([]);
+	const [noneFound, setNoneFound] = useState(false);
+	const [searchValue, setSearchValue] = useState('');
+	const [filterValue, setFilterValue] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState('');
 
@@ -30,6 +34,35 @@ const CountriesList = () => {
 		};
 		fetchAllCountries();
 	}, []);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setFilteredCountries(() =>
+				countries.filter((country) => country.name.includes(searchValue))
+			);
+			if (
+				countries.filter((country) => country.name.includes(searchValue))
+					.length === 0 &&
+				searchValue !== ''
+			) {
+				setNoneFound(true);
+			} else {
+				setNoneFound(false);
+			}
+		}, 200);
+
+		return () => {
+			clearTimeout(timer);
+		};
+	}, [searchValue, countries]);
+
+	const searchChangeHandler = (e) => {
+		setSearchValue(e.target.value);
+	};
+
+	const filterChangeHandler = (e) => {
+		setFilterValue(e);
+	};
 
 	let content = (
 		<div
@@ -64,25 +97,58 @@ const CountriesList = () => {
 	}
 
 	if (!isLoading && !error) {
-		content = (
-			<div className={styles['countries-grid']}>
-				{countries.map((country) => (
-					<Country
-						key={country.numericCode}
-						name={country.name}
-						flag={country.flag}
-						population={country.population}
-						region={country.region}
-						capital={country.capital}
-					/>
-				))}
-			</div>
-		);
+		if (filteredCountries.length === 0 && noneFound === true) {
+			content = (
+				<p
+					style={{
+						'text-align': 'center',
+						'font-size': '1.5rem',
+						'margin-top': '2rem',
+					}}>
+					None countries found
+				</p>
+			);
+		} else if (filteredCountries.length > 0) {
+			content = (
+				<div className={styles['countries-grid']}>
+					{filteredCountries.map((country) => (
+						<Country
+							key={country.numericCode}
+							name={country.name}
+							flag={country.flag}
+							population={country.population}
+							region={country.region}
+							capital={country.capital}
+						/>
+					))}
+				</div>
+			);
+		} else if (filteredCountries.length === '' && noneFound === false) {
+			content = (
+				<div className={styles['countries-grid']}>
+					{countries.map((country) => (
+						<Country
+							key={country.numericCode}
+							name={country.name}
+							flag={country.flag}
+							population={country.population}
+							region={country.region}
+							capital={country.capital}
+						/>
+					))}
+				</div>
+			);
+		}
 	}
 
 	return (
 		<>
-			<SearchFilter />
+			<SearchFilter
+				searchValue={searchValue}
+				searchChangeHandler={searchChangeHandler}
+				filterValue={filterValue}
+				filterChangeHandler={filterChangeHandler}
+			/>
 			{content}
 		</>
 	);

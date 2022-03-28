@@ -9,13 +9,13 @@ const Country = ({ name, flag, population, region, capital }) => {
 			<div className={styles.country__description}>
 				<p className={styles.country__name}>{name}</p>
 				<p className={styles.country__info}>
-					<b>Population:</b> {population}
+					<span className={styles.bold}>Population:</span> {population}
 				</p>
 				<p className={styles.country__info}>
-					<b>Region:</b> {region}
+					<span className={styles.bold}>Region:</span> {region}
 				</p>
 				<p className={styles.country__info}>
-					<b>Capital:</b> {capital}
+					<span className={styles.bold}>Capital:</span> {capital}
 				</p>
 			</div>
 		</div>

@@ -25,5 +25,16 @@
 	object-fit: cover;
 }
 .country__description {
-	padding: 2rem;
+	padding: 1.5rem 1.7rem 2rem 1.7rem;
+}
+.country__name {
+	font-size: 1.3rem;
+	font-weight: 800;
+	margin-bottom: 0.8rem;
+}
+.country__info {
+	margin-bottom: 0.2rem;
+}
+.bold {
+	font-weight: 600;
 }

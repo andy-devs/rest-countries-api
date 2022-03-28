@@ -3,7 +3,7 @@ import { TextInput, Select } from '@mantine/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-const SearchFilter = () => {
+const SearchFilter = (props) => {
 	return (
 		<div className={styles['search-filter']}>
 			<TextInput
@@ -13,6 +13,8 @@ const SearchFilter = () => {
 				name='search'
 				placeholder='Search for a country...'
 				icon={<FontAwesomeIcon icon={faMagnifyingGlass} size='sm' />}
+				onChange={props.searchChangeHandler}
+				value={props.searchValue}
 			/>
 			<Select
 				classNames={{
@@ -29,6 +31,8 @@ const SearchFilter = () => {
 					{ value: 'europe', label: 'Europe' },
 					{ value: 'oceania', label: 'Oceania' },
 				]}
+				onChange={props.filterChangeHandler}
+				value={props.filterValue}
 			/>
 		</div>
 	);
