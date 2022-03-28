@@ -1,0 +1,28 @@
+.country {
+	max-width: 20rem;
+	max-height: 35rem;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: flex-start;
+	border-radius: 0.3rem;
+	background: var(--light-elements);
+	box-shadow: 0px 1px 8px 0px rgba(34, 60, 80, 0.1);
+}
+.country__flag-wrapper {
+	border-top-left-radius: 0.3rem;
+	border-top-right-radius: 0.3rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-height: 10rem;
+	overflow: hidden;
+}
+.country__flag {
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+.country__description {
+	padding: 2rem;
+}
