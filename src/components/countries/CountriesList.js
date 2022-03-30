@@ -1,6 +1,5 @@
 import styles from './CountriesList.module.css';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner';
 
 import SearchFilter from '../countries/SearchFilter';
@@ -14,10 +13,6 @@ const CountriesList = () => {
 	const [filterValue, setFilterValue] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState('');
-
-	const location = useLocation();
-
-	const searchParams = new URLSearchParams(location.search);
 
 	useEffect(() => {
 		const fetchAllCountries = async () => {
@@ -61,7 +56,7 @@ const CountriesList = () => {
 				setFilteredCountries([]);
 				return;
 			}
-			console.log(filtered, condition);
+
 			setFilteredCountries(() => filtered);
 			if (condition) {
 				setNoneFound(true);
