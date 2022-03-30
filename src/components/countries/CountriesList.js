@@ -36,25 +36,47 @@ const CountriesList = () => {
 	}, []);
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setFilteredCountries(() =>
-				countries.filter((country) => country.name.includes(searchValue))
-			);
-			if (
-				countries.filter((country) => country.name.includes(searchValue))
-					.length === 0 &&
-				searchValue !== ''
-			) {
+		const filterCountries = (searchValue, filterValue) => {
+			let filtered;
+			let condition;
+			if (searchValue !== '' && filterValue) {
+				filtered = countries.filter(
+					(country) =>
+						country.name.includes(searchValue) &&
+						country.region.includes(filterValue)
+				);
+				condition = searchValue !== '' && filterValue;
+			} else if (searchValue !== '' && !filterValue) {
+				filtered = countries.filter((country) =>
+					country.name.includes(searchValue)
+				);
+				condition = searchValue !== '';
+			} else if (searchValue === '' && filterValue) {
+				filtered = countries.filter((country) =>
+					country.region.includes(filterValue)
+				);
+				condition = filterValue;
+			} else {
+				setNoneFound(false);
+				setFilteredCountries([]);
+				return;
+			}
+			console.log(filtered, condition);
+			setFilteredCountries(() => filtered);
+			if (condition) {
 				setNoneFound(true);
 			} else {
 				setNoneFound(false);
 			}
+		};
+		const timer = setTimeout(() => {
+			filterCountries(searchValue, filterValue);
 		}, 200);
 
 		return () => {
 			clearTimeout(timer);
 		};
-	}, [searchValue, countries]);
+	}, [searchValue, filterValue, countries]);
 
 	const searchChangeHandler = (e) => {
 		setSearchValue(e.target.value);
@@ -87,9 +109,9 @@ const CountriesList = () => {
 		content = (
 			<p
 				style={{
-					'text-align': 'center',
-					'font-size': '1.5rem',
-					'margin-top': '2rem',
+					textAlign: 'center',
+					fontSize: '1.5rem',
+					marginTop: '2rem',
 				}}>
 				{error}
 			</p>
@@ -97,13 +119,13 @@ const CountriesList = () => {
 	}
 
 	if (!isLoading && !error) {
-		if (filteredCountries.length === 0 && noneFound === true) {
+		if (filteredCountries.length === 0 && noneFound) {
 			content = (
 				<p
 					style={{
-						'text-align': 'center',
-						'font-size': '1.5rem',
-						'margin-top': '2rem',
+						textAlign: 'center',
+						fontSize: '1.5rem',
+						marginTop: '2rem',
 					}}>
 					None countries found
 				</p>
@@ -123,7 +145,7 @@ const CountriesList = () => {
 					))}
 				</div>
 			);
-		} else if (filteredCountries.length === '' && noneFound === false) {
+		} else {
 			content = (
 				<div className={styles['countries-grid']}>
 					{countries.map((country) => (

@@ -25,11 +25,11 @@ const SearchFilter = (props) => {
 				variant='unstyled'
 				placeholder='Filter by region'
 				data={[
-					{ value: 'africa', label: 'Africa' },
-					{ value: 'america', label: 'America' },
-					{ value: 'asia', label: 'Asia' },
-					{ value: 'europe', label: 'Europe' },
-					{ value: 'oceania', label: 'Oceania' },
+					{ value: 'Africa', label: 'Africa' },
+					{ value: 'America', label: 'America' },
+					{ value: 'Asia', label: 'Asia' },
+					{ value: 'Europe', label: 'Europe' },
+					{ value: 'Oceania', label: 'Oceania' },
 				]}
 				onChange={props.filterChangeHandler}
 				value={props.filterValue}
