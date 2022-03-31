@@ -42,35 +42,39 @@ const CountryDetailsItem = (props) => {
 							<p className={styles['country__info-desc__item']}>
 								<span className={styles['bold']}>Capital:</span> {props.capital}
 							</p>
-							<div className={styles['country__info-desc__row']}>
-								<p className={styles['country__info-desc__item']}>
-									<span className={styles['bold']}>Top Level Domain:</span>{' '}
-									{props.topLevelDomain.map((item) => (
-										<span>{item} </span>
-									))}
-								</p>
-								<p className={styles['country__info-desc__item']}>
-									<span className={styles['bold']}>Currencies:</span>{' '}
-									{props.currencies.map((item) => (
-										<span>{item.name} </span>
-									))}
-								</p>
-								<p className={styles['country__info-desc__item']}>
-									<span className={styles['bold']}>Languages:</span>{' '}
-									{props.languages.map((item) => (
-										<span>{item.name} </span>
-									))}
-								</p>
-							</div>
+						</div>
+						<div className={styles['country__info-desc__row']}>
+							<p className={styles['country__info-desc__item']}>
+								<span className={styles['bold']}>Top Level Domain:</span>{' '}
+								{props.topLevelDomain.map((item) => (
+									<span>{item} </span>
+								))}
+							</p>
+							<p className={styles['country__info-desc__item']}>
+								<span className={styles['bold']}>Currencies:</span>{' '}
+								{props.currencies.map((item) => (
+									<span>{item.name} </span>
+								))}
+							</p>
+							<p className={styles['country__info-desc__item']}>
+								<span className={styles['bold']}>Languages:</span>{' '}
+								{props.languages.map((item) => (
+									<span>{item.name} </span>
+								))}
+							</p>
 						</div>
 					</div>
 					<div className={styles['country__info-borders']}>
-						<span className={styles['bold']}>Border Countries: </span>
-						{props.borders.map((item) => (
-							<div className={styles['country__info-borders__item']}>
-								{item}
-							</div>
-						))}
+						<p className={styles['country__info-borders__head']}>
+							Border Countries:{' '}
+						</p>
+						<div className={styles['country__info-borders__items']}>
+							{props.borders.map((item) => (
+								<span className={styles['country__info-borders__item']}>
+									{item}
+								</span>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>

@@ -14,9 +14,50 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	gap: clamp(1rem, 6vw, 10rem);
+	gap: clamp(1rem, 4vw, 8rem);
 }
 .country__flag {
-	max-width: 40rem;
+	max-width: 45rem;
 	height: auto;
+}
+.country__info {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+}
+.country__info-name {
+	font-size: 2rem;
+}
+.country__info-desc {
+	display: flex;
+	gap: 4rem;
+}
+.bold {
+	font-weight: 600;
+}
+.country__info-desc__row {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.country__info-borders {
+	display: flex;
+	align-items: center;
+}
+.country__info-borders__head {
+	font-weight: 600;
+	margin-right: 0.5rem;
+}
+.country__info-borders__items {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+.country__info-borders__item {
+	background-color: var(--light-elements);
+	color: var(--light-text);
+	font-size: 0.9rem;
+	padding: 0.2rem 1.2rem;
+	border-radius: 0.3rem;
+	box-shadow: 0px 1px 10px 0px rgba(34, 60, 80, 0.2);
 }
