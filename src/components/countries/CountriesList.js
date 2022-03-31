@@ -22,6 +22,7 @@ const CountriesList = () => {
 				const data = await response.json();
 				setCountries(data);
 				setIsLoading(false);
+				console.log(data[0]);
 			} catch (err) {
 				setIsLoading(false);
 				setError(err.message);
@@ -130,7 +131,8 @@ const CountriesList = () => {
 				<div className={styles['countries-grid']}>
 					{filteredCountries.map((country) => (
 						<Country
-							key={country.numericCode}
+							id={country.alpha2Code.toLowerCase()}
+							key={country.name}
 							name={country.name}
 							flag={country.flag}
 							population={country.population}
@@ -145,7 +147,8 @@ const CountriesList = () => {
 				<div className={styles['countries-grid']}>
 					{countries.map((country) => (
 						<Country
-							key={country.numericCode}
+							id={country.alpha2Code.toLowerCase()}
+							key={country.name}
 							name={country.name}
 							flag={country.flag}
 							population={country.population}

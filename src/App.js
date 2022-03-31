@@ -7,11 +7,13 @@ function App() {
 	return (
 		<>
 			<MainHeader />
-			<Routes>
-				<Route path='/' element={<Navigate to='/countries' />} />
-				<Route path='/countries' element={<AllCountries />} />
-				<Route path='/countries/:countryId' element={<CountryDetails />} />
-			</Routes>
+			<main className='main'>
+				<Routes>
+					<Route path='/' element={<Navigate to='/countries' />} />
+					<Route path='/countries' element={<AllCountries />} />
+					<Route path='/countries/:countryId' element={<CountryDetails />} />
+				</Routes>
+			</main>
 		</>
 	);
 }
