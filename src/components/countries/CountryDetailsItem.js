@@ -27,13 +27,7 @@ const CountryDetailsItem = (props) => {
 		.join(', ');
 
 	useEffect(() => {
-		console.log(props.borders);
-		console.log(bordersContent);
-	});
-
-	useEffect(() => {
 		if (props.borders) {
-			setBordersContent([]);
 			for (let country of props.borders) {
 				fetch(`https://restcountries.com/v2/alpha/${country}`)
 					.then((response) => response.json())
@@ -105,11 +99,11 @@ const CountryDetailsItem = (props) => {
 							</span>
 							<div className={styles['country__info-borders__items']}>
 								{bordersContent.map((item) => (
-									<Link
-										to={`/countries/${item.alpha2Code.toLowerCase()}`}
+									<a
+										href={`/countries/${item.alpha2Code.toLowerCase()}`}
 										className={styles['country__info-borders__item']}>
 										{item.name}
-									</Link>
+									</a>
 								))}
 							</div>
 						</div>

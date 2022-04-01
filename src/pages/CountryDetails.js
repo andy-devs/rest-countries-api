@@ -8,6 +8,7 @@ const CountryDetails = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const params = useParams();
+
 	const countryId = params.countryId;
 
 	useEffect(() => {
