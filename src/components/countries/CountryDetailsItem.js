@@ -27,12 +27,19 @@ const CountryDetailsItem = (props) => {
 		.join(', ');
 
 	useEffect(() => {
+		const fetchBorders = async () => {
+			const borderCountries = await Promise.all(
+				props.borders.map((country) =>
+					fetch(`https://restcountries.com/v2/alpha/${country}`)
+						.then((response) => response.json())
+						.then((data) => data)
+				)
+			);
+			setBordersContent(borderCountries);
+		};
+
 		if (props.borders) {
-			for (let country of props.borders) {
-				fetch(`https://restcountries.com/v2/alpha/${country}`)
-					.then((response) => response.json())
-					.then((data) => setBordersContent((prev) => [...prev, data]));
-			}
+			fetchBorders();
 		}
 	}, [props.borders]);
 
@@ -99,11 +106,11 @@ const CountryDetailsItem = (props) => {
 							</span>
 							<div className={styles['country__info-borders__items']}>
 								{bordersContent.map((item) => (
-									<a
-										href={`/countries/${item.alpha2Code.toLowerCase()}`}
+									<Link
+										to={`/countries/${item.alpha2Code.toLowerCase()}`}
 										className={styles['country__info-borders__item']}>
 										{item.name}
-									</a>
+									</Link>
 								))}
 							</div>
 						</div>
