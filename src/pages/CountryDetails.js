@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Oval } from 'react-loader-spinner';
 import CountryDetailsItem from '../components/countries/CountryDetailsItem';
 
@@ -20,7 +20,6 @@ const CountryDetails = () => {
 				const data = await response.json();
 				setIsLoading(false);
 				setCountryData(data);
-				console.log(data);
 			} catch (error) {
 				setIsLoading(false);
 				setError(error.message);
