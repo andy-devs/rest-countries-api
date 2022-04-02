@@ -7,7 +7,10 @@ const SearchFilter = (props) => {
 	return (
 		<div className={styles['search-filter']}>
 			<TextInput
-				className={styles.input}
+				classNames={{
+					wrapper: styles.input,
+					input: styles.input__text,
+				}}
 				variant='unstyled'
 				type='text'
 				name='search'
@@ -20,6 +23,10 @@ const SearchFilter = (props) => {
 				classNames={{
 					dropdown: styles.select__drop,
 					unstyledVariant: styles.select,
+					input: styles.select__text,
+					item: styles.select__item,
+					hovered: styles['select__item-hovered'],
+					selected: styles['select__item-selected'],
 				}}
 				clearable
 				variant='unstyled'

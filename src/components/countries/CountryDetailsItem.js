@@ -16,17 +16,19 @@ const CountryDetailsItem = (props) => {
 	};
 
 	const parsedPopulation = props.population
-		.toString()
-		.match(/\d{1,3}(?=(\d{3})*$)/g)
-		.join(',');
+		? props.population
+				.toString()
+				.match(/\d{1,3}(?=(\d{3})*$)/g)
+				.join(',')
+		: null;
 
 	const parsedCurrencies = props.currencies
-		.map((currency) => currency.name)
-		.join(', ');
+		? props.currencies.map((currency) => currency.name).join(', ')
+		: null;
 
 	const parsedLanguages = props.languages
-		.map((language) => language.name)
-		.join(', ');
+		? props.languages.map((language) => language.name).join(', ')
+		: null;
 
 	useEffect(() => {
 		const fetchBorders = async () => {
@@ -62,39 +64,52 @@ const CountryDetailsItem = (props) => {
 					<h1 className={styles['country__info-name']}>{props.name}</h1>
 					<div className={styles['country__info-desc']}>
 						<div className={styles['country__info-desc__row']}>
-							<p className={styles['country__info-desc__item']}>
-								<span className={styles['bold']}>Native Name:</span>{' '}
-								{props.nativeName}
-							</p>
-							<p className={styles['country__info-desc__item']}>
-								<span className={styles['bold']}>Population:</span>{' '}
-								{parsedPopulation}
-							</p>
-							<p className={styles['country__info-desc__item']}>
-								<span className={styles['bold']}>Region:</span> {props.region}
-							</p>
-							<p className={styles['country__info-desc__item']}>
-								<span className={styles['bold']}>Sub region:</span>{' '}
-								{props.subregion}
-							</p>
-							<p className={styles['country__info-desc__item']}>
-								<span className={styles['bold']}>Capital:</span> {props.capital}
-							</p>
+							{props.nativeName && (
+								<p className={styles['country__info-desc__item']}>
+									<span className={styles['bold']}>Native Name:</span>{' '}
+									{props.nativeName}
+								</p>
+							)}
+							{parsedPopulation && (
+								<p className={styles['country__info-desc__item']}>
+									<span className={styles['bold']}>Population:</span>{' '}
+									{parsedPopulation}
+								</p>
+							)}
+							{props.region && (
+								<p className={styles['country__info-desc__item']}>
+									<span className={styles['bold']}>Region:</span> {props.region}
+								</p>
+							)}
+							{props.subregion && (
+								<p className={styles['country__info-desc__item']}>
+									<span className={styles['bold']}>Sub region:</span>{' '}
+									{props.subregion}
+								</p>
+							)}
+							{props.capital && (
+								<p className={styles['country__info-desc__item']}>
+									<span className={styles['bold']}>Capital:</span>{' '}
+									{props.capital}
+								</p>
+							)}
 						</div>
 						<div className={styles['country__info-desc__row']}>
-							<p className={styles['country__info-desc__item']}>
-								<span className={styles['bold']}>Top Level Domain:</span>{' '}
-								{props.topLevelDomain.map((item) => (
-									<span>{item}</span>
-								))}
-							</p>
-							{parsedCurrencies.length > 0 && (
+							{props.topLevelDomain && (
+								<p className={styles['country__info-desc__item']}>
+									<span className={styles['bold']}>Top Level Domain:</span>{' '}
+									{props.topLevelDomain.map((item) => (
+										<span>{item}</span>
+									))}
+								</p>
+							)}
+							{parsedCurrencies && (
 								<p className={styles['country__info-desc__item']}>
 									<span className={styles['bold']}>Currencies:</span>{' '}
 									{parsedCurrencies}
 								</p>
 							)}
-							{parsedLanguages.length > 0 && (
+							{parsedLanguages && (
 								<p className={styles['country__info-desc__item']}>
 									<span className={styles['bold']}>Languages:</span>{' '}
 									{parsedLanguages}
@@ -104,12 +119,12 @@ const CountryDetailsItem = (props) => {
 					</div>
 
 					<div className={styles['country__info-borders']}>
-						{props.borders.length > 0 && (
+						{props.borders && (
 							<span className={styles['country__info-borders__head']}>
 								Border Countries:{' '}
 							</span>
 						)}
-						{isLoading && <ThreeDots color='var(--light-text)' />}
+						{isLoading && <ThreeDots color='var(--text-color)' />}
 						{bordersContent.length > 0 &&
 							bordersContent.map((item) => (
 								<Link

@@ -22,7 +22,6 @@ const CountriesList = () => {
 				const data = await response.json();
 				setCountries(data);
 				setIsLoading(false);
-				console.log(data[0]);
 			} catch (err) {
 				setIsLoading(false);
 				setError(err.message);
@@ -95,8 +94,8 @@ const CountriesList = () => {
 				height={100}
 				width={100}
 				strokeWidth={3}
-				color='black'
-				secondaryColor='white'
+				color='var(--text-color)'
+				secondaryColor='var(--elements-color)'
 			/>
 		</div>
 	);
