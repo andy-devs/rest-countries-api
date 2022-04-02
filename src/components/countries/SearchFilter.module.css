@@ -56,8 +56,10 @@
 	}
 	.input {
 		width: 100%;
+		padding: 0.05rem;
 	}
 	.select {
 		align-self: flex-start;
+		padding: 0.5rem 0.5rem 0.5rem 0.8rem;
 	}
 }
