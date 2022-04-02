@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { ThreeDots } from 'react-loader-spinner';
 
 const CountryDetailsItem = (props) => {
 	const navigate = useNavigate();
 
 	const [bordersContent, setBordersContent] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const navigateBack = () => {
 		navigate(-1);
@@ -28,6 +30,7 @@ const CountryDetailsItem = (props) => {
 
 	useEffect(() => {
 		const fetchBorders = async () => {
+			setIsLoading(true);
 			const borderCountries = await Promise.all(
 				props.borders.map((country) =>
 					fetch(`https://restcountries.com/v2/alpha/${country}`)
@@ -36,6 +39,7 @@ const CountryDetailsItem = (props) => {
 				)
 			);
 			setBordersContent(borderCountries);
+			setIsLoading(false);
 		};
 
 		if (props.borders) {
@@ -99,22 +103,22 @@ const CountryDetailsItem = (props) => {
 						</div>
 					</div>
 
-					{bordersContent.length > 0 && (
-						<div className={styles['country__info-borders']}>
+					<div className={styles['country__info-borders']}>
+						{props.borders.length > 0 && (
 							<span className={styles['country__info-borders__head']}>
 								Border Countries:{' '}
 							</span>
-							<div className={styles['country__info-borders__items']}>
-								{bordersContent.map((item) => (
-									<Link
-										to={`/countries/${item.alpha2Code.toLowerCase()}`}
-										className={styles['country__info-borders__item']}>
-										{item.name}
-									</Link>
-								))}
-							</div>
-						</div>
-					)}
+						)}
+						{isLoading && <ThreeDots color='var(--light-text)' />}
+						{bordersContent.length > 0 &&
+							bordersContent.map((item) => (
+								<Link
+									to={`/countries/${item.alpha2Code.toLowerCase()}`}
+									className={styles['country__info-borders__item']}>
+									{item.name}
+								</Link>
+							))}
+					</div>
 				</div>
 			</div>
 		</>
