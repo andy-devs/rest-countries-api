@@ -41,6 +41,8 @@ Users should be able to:
 ### Built with
 
 - [React](https://reactjs.org/) - JS library
+- [React Router](https://reactrouter.com/) - Routing library for React
+- [Mantine](https://mantine.dev/) - React components library
 - [Countries API](https://restcountries.com/) - REST Countries API
 
 ### What I learned
