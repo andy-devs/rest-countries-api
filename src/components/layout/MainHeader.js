@@ -7,53 +7,49 @@ import { useState, useEffect, useCallback } from 'react';
 const MainHeader = () => {
 	const [theme, setTheme] = useState('light');
 
-	const themeData = {
-		darkBackground: 'hsl(207, 26%, 17%)',
-		darkElements: 'hsl(209, 23%, 22%)',
-		darkText: 'hsl(0, 0%, 100%)',
-		lightBackground: 'hsl(0, 0%, 98%)',
-		lightElements: 'hsl(0, 0%, 100%)',
-		lightText: 'hsl(200, 15%, 8%)',
-		lightInput: 'hsl(0, 0%, 52%)',
-	};
+	const setToTheme = useCallback((theme) => {
+		const themeData = {
+			darkBackground: 'hsl(207, 26%, 17%)',
+			darkElements: 'hsl(209, 23%, 22%)',
+			darkText: 'hsl(0, 0%, 100%)',
+			lightBackground: 'hsl(0, 0%, 98%)',
+			lightElements: 'hsl(0, 0%, 100%)',
+			lightText: 'hsl(200, 15%, 8%)',
+			lightInput: 'hsl(0, 0%, 52%)',
+		};
+		if (theme === 'light') {
+			localStorage.setItem('theme', 'light');
+			document.documentElement.style.setProperty(
+				'--text-color',
+				themeData.lightText
+			);
+			document.documentElement.style.setProperty(
+				'--background-color',
+				themeData.lightBackground
+			);
+			document.documentElement.style.setProperty(
+				'--elements-color',
+				themeData.lightElements
+			);
+			setTheme('light');
+		} else if (theme === 'dark') {
+			localStorage.setItem('theme', 'dark');
+			document.documentElement.style.setProperty(
+				'--text-color',
+				themeData.darkText
+			);
+			document.documentElement.style.setProperty(
+				'--background-color',
+				themeData.darkBackground
+			);
+			document.documentElement.style.setProperty(
+				'--elements-color',
+				themeData.darkElements
+			);
 
-	const setToTheme = useCallback(
-		(theme) => {
-			if (theme === 'light') {
-				localStorage.setItem('theme', 'light');
-				document.documentElement.style.setProperty(
-					'--text-color',
-					themeData.lightText
-				);
-				document.documentElement.style.setProperty(
-					'--background-color',
-					themeData.lightBackground
-				);
-				document.documentElement.style.setProperty(
-					'--elements-color',
-					themeData.lightElements
-				);
-				setTheme('light');
-			} else if (theme === 'dark') {
-				localStorage.setItem('theme', 'dark');
-				document.documentElement.style.setProperty(
-					'--text-color',
-					themeData.darkText
-				);
-				document.documentElement.style.setProperty(
-					'--background-color',
-					themeData.darkBackground
-				);
-				document.documentElement.style.setProperty(
-					'--elements-color',
-					themeData.darkElements
-				);
-
-				setTheme('dark');
-			}
-		},
-		[themeData]
-	);
+			setTheme('dark');
+		}
+	}, []);
 	useEffect(() => {
 		const themeData = localStorage.getItem('theme');
 		if (themeData) {
@@ -71,7 +67,6 @@ const MainHeader = () => {
 	}, [setToTheme]);
 
 	const themeChangeHandler = () => {
-		console.log('changing');
 		if (theme === 'light') {
 			setToTheme('dark');
 		} else if (theme === 'dark') {
