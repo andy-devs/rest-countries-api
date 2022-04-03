@@ -40,6 +40,7 @@ const CountryDetailsItem = (props) => {
 						.then((data) => data)
 				)
 			);
+
 			setBordersContent(borderCountries);
 			setIsLoading(false);
 		};

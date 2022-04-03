@@ -9,6 +9,7 @@ const SearchFilter = (props) => {
 			<TextInput
 				classNames={{
 					wrapper: styles.input,
+					unstyledVariant: styles.input__inner,
 					input: styles.input__text,
 				}}
 				variant='unstyled'
