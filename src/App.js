@@ -12,6 +12,7 @@ function App() {
 					<Route path='/' element={<Navigate to='/countries' />} />
 					<Route path='/countries' element={<AllCountries />} />
 					<Route path='/countries/:countryId' element={<CountryDetails />} />
+					<Route path='*' element={<Navigate to='/' />} />
 				</Routes>
 			</main>
 		</>
