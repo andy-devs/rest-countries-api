@@ -52,11 +52,12 @@ const CountryDetailsItem = (props) => {
 	}, [props.borders]);
 
 	let spinner;
-
-	if (isLoading || bordersContent.length !== props.borders.length) {
-		spinner = <ThreeDots color='var(--text-color)' />;
-	} else {
-		spinner = null;
+	if (props.borders) {
+		if (isLoading || props.borders.length !== bordersContent.length) {
+			spinner = <ThreeDots color='var(--text-color)' />;
+		} else {
+			spinner = null;
+		}
 	}
 
 	return (
@@ -127,7 +128,6 @@ const CountryDetailsItem = (props) => {
 							)}
 						</div>
 					</div>
-
 					<div className={styles['country__info-borders']}>
 						{props.borders && (
 							<span className={styles['country__info-borders__head']}>
@@ -135,7 +135,8 @@ const CountryDetailsItem = (props) => {
 							</span>
 						)}
 						{spinner}
-						{bordersContent.length === props.borders.length &&
+						{props.borders &&
+							bordersContent.length === props.borders.length &&
 							bordersContent.map((item) => (
 								<Link
 									to={`/countries/${item.alpha2Code.toLowerCase()}`}

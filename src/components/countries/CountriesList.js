@@ -122,7 +122,7 @@ const CountriesList = () => {
 						fontSize: '1.5rem',
 						marginTop: '2rem',
 					}}>
-					None countries found
+					No countries found
 				</p>
 			);
 		} else if (filteredCountries.length > 0) {
