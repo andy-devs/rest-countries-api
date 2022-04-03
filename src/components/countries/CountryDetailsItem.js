@@ -40,15 +40,25 @@ const CountryDetailsItem = (props) => {
 						.then((data) => data)
 				)
 			);
-
-			setBordersContent(borderCountries);
-			setIsLoading(false);
+			if (borderCountries.length === props.borders.length) {
+				console.log(borderCountries);
+				setBordersContent(borderCountries);
+				setIsLoading(false);
+			}
 		};
 
 		if (props.borders) {
 			fetchBorders();
 		}
 	}, [props.borders]);
+
+	let spinner;
+
+	if (isLoading || bordersContent.length !== props.borders.length) {
+		spinner = <ThreeDots color='var(--text-color)' />;
+	} else {
+		spinner = null;
+	}
 
 	return (
 		<>
@@ -125,8 +135,8 @@ const CountryDetailsItem = (props) => {
 								Border Countries:{' '}
 							</span>
 						)}
-						{isLoading && <ThreeDots color='var(--text-color)' />}
-						{bordersContent.length > 0 &&
+						{spinner}
+						{bordersContent.length === props.borders.length &&
 							bordersContent.map((item) => (
 								<Link
 									to={`/countries/${item.alpha2Code.toLowerCase()}`}

@@ -44,8 +44,8 @@ const CountryDetails = () => {
 						height={100}
 						width={100}
 						strokeWidth={3}
-						color='black'
-						secondaryColor='white'
+						color='var(--text-color)'
+						secondaryColor='var(--elements-color)'
 					/>
 				</div>
 			)}
