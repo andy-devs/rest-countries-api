@@ -41,7 +41,6 @@ const CountryDetailsItem = (props) => {
 				)
 			);
 			if (borderCountries.length === props.borders.length) {
-				console.log(borderCountries);
 				setBordersContent(borderCountries);
 				setIsLoading(false);
 			}
